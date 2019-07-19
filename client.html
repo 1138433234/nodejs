@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>charroom</title>
+</head>
+<body>
+   
+    
+   <textarea name="" id="textarea0" cols="30" rows="10">随便说点什么~</textarea>
+
+    <button id="btn" type="button">发送</button>
+
+	</br>
+    <textarea name="" id="textarea1" cols="30" rows="10" style="width: 300px;height:600px"></textarea>
+
+    <script>
+
+
+        var ws=new WebSocket("ws://47.100.207.21:8088");
+        ws.onopen=function(evt){
+            
+           document.getElementById('btn').onclick=function(){
+               ws.send(document.getElementById('textarea0').value);
+           }
+
+
+        }
+        ws.onmessage=function(event){
+            
+
+         document.getElementById('textarea1').value+=(event.data + '\n');   //实现换行
+
+         
+
+        }
+        
+
+        </script>
+</body>
+</html>
